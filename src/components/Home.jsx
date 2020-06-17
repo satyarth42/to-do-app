@@ -24,7 +24,7 @@ class Home extends Component {
     updateStatus = (index,status) => {
         const {list} = this.state
         list[index].status = status
-        this.setState({list})
+        this.setState({list},() => console.log(this.state))
     }
 
     render(){
@@ -32,7 +32,7 @@ class Home extends Component {
             <div className="container">
                 <TaskSubmit createTask={this.createTask}/>
                 <br/>
-                <TaskList list={this.state.list}/>
+                <TaskList list={this.state.list} updateStatus={this.updateStatus}/>
             </div>
         );
     }

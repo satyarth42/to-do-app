@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const TaskList = (props) => {
+
+
+    const checkboxChange = (index,status) => {
+        props.updateStatus(index,status)
+    }
+
     const {list} = props
     return(
         <div>
             List of Tasks
             <ol>
                 {list.map((task,index) => {
-                    return (<li key={index}>{task.name}</li>);
+                    return (
+                        <Fragment key={index}>
+                            <li>{task.name}
+                                <input type="checkbox" value={list[index].status} onChange={() => checkboxChange(index,!list[index].status)}/>
+                            </li>
+                        </Fragment>
+                        );
                 })}
             </ol>
         </div>
