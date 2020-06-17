@@ -13,11 +13,16 @@ class TaskSubmit extends Component {
         this.setState({newTask:e.target.value})
     }
 
+    createTask = () => {
+        this.props.createTask(this.state.newTask)
+        this.setState({newTask:""})
+    }
+
     render(){
         return (
             <div>
                 <input type="text" value={this.state.newTask} onChange={this.handleChange}/><br/>
-                <button>Submit</button>
+                <button onClick={this.createTask}>Submit</button>
             </div>
         );
     }
