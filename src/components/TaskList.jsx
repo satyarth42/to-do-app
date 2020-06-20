@@ -1,10 +1,18 @@
-import React, { Fragment } from 'react'
-
+import React from 'react'
+import TaskItem from './TaskItem'
 const TaskList = (props) => {
 
 
     const checkboxChange = (index,status) => {
         props.updateStatus(index,status)
+    }
+
+    const deleteTask = (index) => {
+        props.deleteTask(index)
+    }
+
+    const changePriority = (index,value) => {
+        props.changePriority(index,value)
     }
 
     const {list} = props
@@ -14,12 +22,8 @@ const TaskList = (props) => {
             <ol>
                 {list.map((task,index) => {
                     return (
-                        <Fragment key={index}>
-                            <li>{task.name}
-                                <input type="checkbox" value={list[index].status} onChange={() => checkboxChange(index,!list[index].status)}/>
-                            </li>
-                        </Fragment>
-                        );
+                        <TaskItem index={index} task={task} list={list} checkboxChange={checkboxChange} deleteTask={deleteTask} changePriority={changePriority} key={index}/>
+                    );
                 })}
             </ol>
         </div>
